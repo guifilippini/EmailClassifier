@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Deixe a IA Organizar Seus Emails</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <script defer src="assets/script.js"></script>
+</head>
+<body>
+
+  <div class="menu-toggle">☰</div>
+
+  <div class="sidebar">
+    <h2>Histórico</h2>
+    <button id="clear-history">Limpar Tudo</button>
+    <div id="history-list"></div>
+  </div>
+
+  
+  <div class="container">
+    <h1>Deixe a IA Organizar Seus Emails</h1>
+    <p>Cole o texto de um email e descubra rapidamente se ele merece sua atenção imediata ou não.</p>
+
+    <div class="textarea-wrapper">
+      <textarea id="email-text" placeholder="Cole aqui o email..."></textarea>
+      <label for="file-input" class="upload-btn">Upload TXT/PDF</label>
+      <input type="file" id="file-input" accept=".txt,.pdf" hidden />
+    </div>
+
+    <div class="buttons">
+      <button id="btn-classificar">Classificar Email</button>
+      <button id="btn-limpar">Limpar</button>
+    </div>
+
+   
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p>Processando...</p>
+    </div>
+
+ 
+    <div id="resultado" class="hidden">
+      <h2 id="titulo-cat"></h2>
+      <p id="sub-cat"></p>
+      <div class="barra">
+        <div id="bar-inner"></div>
+      </div>
+      <p id="pct"></p>
+      <p id="reply"></p>
+    </div>
+
+    
+    <div class="classificacao-boxes">
+      <div class="card-prod">
+        <h3>✔ Email Produtivo</h3>
+        <p>Solicitações de suporte, atualizações sobre casos, dúvidas técnicas e demandas que exigem resposta ou ação específica.</p>
+      </div>
+      <div class="card-improd">
+        <h3>✘ Email Improdutivo</h3>
+        <p>Mensagens de felicitações, agradecimentos e outras comunicações que não necessitam de ação ou resposta imediata.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+.env
+venv/
+.vscode/
+.idea/
+
+# Cache e temporários do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+
+# Logs
+*.log
+
+# Sistemas operacionais
+.DS_Store
+Thumbs.db
+
+# Build e dependências
+dist/
+build/
+*.tar.gz
+*.whl
+
+# Arquivos do editor
+*.swp
+*.swo
+
+# Arquivos de teste local
+test_*.py
+
+# Banco de dados local
+*.sqlite3
+
+# Versão do Python (pyenv)
+.python-version

@@ -1,0 +1,236 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #3a7bd5);
+  color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #1e3c72;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1001;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu-toggle:hover {
+  background: #3a7bd5;
+  transform: scale(1.05);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 3px 0 15px rgba(0,0,0,0.4);
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  color: white;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  color: #f5f5f5;
+}
+
+#clear-history {
+  background: #ff6600;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s, transform 0.2s;
+}
+
+#clear-history:hover {
+  background: #ff8533;
+  transform: scale(1.05);
+}
+
+.history-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  width: 60%;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 26px;
+  color: #ffffff;
+}
+
+p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #dcdcdc;
+}
+
+.textarea-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.textarea-wrapper textarea {
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  resize: none;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+.upload-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #1e3c72;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.upload-btn:hover {
+  background: #5fa8f5;
+  transform: scale(1.05);
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
+button {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  padding: 12px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #2a5298, #3a7bd5);
+  transform: scale(1.05);
+}
+
+/* Loading centralizado */
+#loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#loading .spinner {
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top: 4px solid #00d2ff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
+
+.hidden { display: none !important; }
+
+#resultado {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.barra {
+  background: #2c3e50;
+  border-radius: 10px;
+  height: 20px;
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+#bar-inner {
+  background: #00d2ff;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s;
+  border-radius: 10px;
+}
+
+.classificacao-boxes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.card-prod, .card-improd {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.card-prod { border-left: 5px solid #4caf50; }
+.card-improd { border-left: 5px solid #e74c3c; }
