@@ -38,25 +38,31 @@ Fallback Local	- Classificação de emergência caso a Groq API não responda.
 ### Como Rodar o Projeto Localmente
 
 1. Clone o Repositório:
-git clone <url-do-repositorio>
-cd project-root
+- git clone <url-do-repositorio>
+
 ----------------------------------------------------------------------------------------------------------------------
 2. Crie e Ative o Ambiente Virtual:
 python -m venv venv
-# Linux/macOS
-source venv/bin/activate
-# Windows
-.\venv\Scripts\activate
+ 
+- Linux/macOS - source venv/bin/activate
+ 
+- Windows - .\venv\Scripts\activate
+
 ----------------------------------------------------------------------------------------------------------------------
 3. Instale as Dependências:
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 ----------------------------------------------------------------------------------------------------------------------
 
 ### Configuração da Groq API
 
 Você precisará de uma chave de API para o serviço de IA.
-Obtenha sua chave gratuita: Groq Cloud
+
+
+- Obtenha sua chave gratuita: Groq Cloud
+- Faça loging e procure por API Keys
+- create API Keys
+
 
 Copie o arquivo de exemplo e crie o .env na raiz do projeto:
 cp .env.example .env
@@ -66,18 +72,25 @@ Edite o arquivo .env e adicione sua chave:
 GROQ_API_KEY=sua_chave_aqui
 
 você pode exportar a variável no seu terminal:
-Linux/macOS: export GROQ_API_KEY="sua_chave_aqui"
-Windows (PowerShell): setx GROQ_API_KEY "sua_chave_aqui"
+
+- Linux/macOS: export GROQ_API_KEY="sua_chave_aqui"
+
+- Windows (PowerShell): setx GROQ_API_KEY "sua_chave_aqui"
+
+
+
 ----------------------------------------------------------------------------------------------------------------------
 
 ### Inicie o Servidor
 
 Com as dependências e a chave configuradas, é só rodar:
 uvicorn backend.main:app --reload
+
 ----------------------------------------------------------------------------------------------------------------------
 
 ### Acesse!
 Abra seu navegador e acesse: http://127.0.0.1:8000
+
 ----------------------------------------------------------------------------------------------------------------------
 
  ### Observações de Produção
