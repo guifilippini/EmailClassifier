@@ -2,16 +2,14 @@ import os
 import json
 import re
 from typing import Optional, Dict, Any
+import requests
 from dotenv import load_dotenv
 
-# Carrega .env
+
 load_dotenv()
 
-
-try:
-    from groq import Groq
-except Exception:
-    Groq = None  
+API_KEY = os.getenv("GROQ_API_KEY")
+API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 SYSTEM = """
 Você é um assistente de suporte de uma empresa financeira.
@@ -28,54 +26,37 @@ IMPORTANTE: Responda SOMENTE em JSON válido, no formato:
 """
 
 def ask_gpt(email_text: str) -> Optional[Dict[str, Any]]:
-    """
-    Chama a Groq API para classificar o email e gerar resposta.
-    Retorna dicionário com keys: categoria, resposta, confianca
-    Em caso de falha, retorna None (o main fará fallback local).
-    """
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
-        print("Nenhuma chave GROQ_API_KEY configurada no ambiente.")
-        return None
-
-    if Groq is None:
-        print("Cliente Groq não disponível (pacote não instalado).")
+    if not API_KEY:
+        print("❌ Nenhuma chave GROQ_API_KEY configurada.")
         return None
 
     try:
-        client = Groq(api_key=api_key)
-
-       
-        resp = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=[
+        headers = {
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "model": "llama-3.1-8b-instant",
+            "messages": [
                 {"role": "system", "content": SYSTEM},
                 {"role": "user", "content": f"Email:\n{email_text}"}
             ],
-            max_tokens=400,
-            temperature=0.25,
-        )
+            "max_tokens": 400,
+            "temperature": 0.25,
+        }
 
-     
-        content = ""
-        try:
-            content = resp.choices[0].message.content or ""
-        except Exception:
-           
-            content = str(resp)
+        r = requests.post(API_URL, headers=headers, json=payload)
+        r.raise_for_status()
+        resp_json = r.json()
 
-       
+        content = resp_json["choices"][0]["message"]["content"]
+
         try:
             return json.loads(content)
         except json.JSONDecodeError:
-            # extrai primeiro bloco JSON {...} no texto
-            m = re.search(r"\{.*\}", content, flags=re.DOTALL)
-            if m:
-                try:
-                    return json.loads(m.group())
-                except Exception:
-                    pass
-           
+            match = re.search(r"\{.*\}", content, flags=re.DOTALL)
+            if match:
+                return json.loads(match.group())
             return {"categoria": "Desconhecido", "resposta": content, "confianca": 0.5}
 
     except Exception as e:
