@@ -83,13 +83,33 @@ você pode exportar a variável no seu terminal:
 
 ### Inicie o Servidor
 
-Com as dependências e a chave configuradas, é só rodar:
-uvicorn backend.main:app --reload
+- ativar o ambiente virtual: .\venv\Scripts\Activate.ps1
 
-----------------------------------------------------------------------------------------------------------------------
+- Se o PowerShell bloquear a ativação, rode: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+- Se não tiver a venv/, crie e ative: python -m venv venv
+
+- Você saberá que deu certo quando aparecer (venv) no começo da linha do terminal.
+
+- Com as dependências e a chave configuradas, é só rodar: uvicorn backend.main:app --reload
+
+
+### instalar dependências
+
+- Na raiz do projeto: pip install -r requirements.txt
+
+### conferir a chave da IA (.env)
+
+- Garanta que existe um arquivo .env na raiz do projeto com: GROQ_API_KEY=sua_chave_aqui
+
+### Inicie o Servidor com tudo instalado
+
+- ativar o ambiente virtual: .\venv\Scripts\Activate.ps1
+- subir o servidor FastAPI (Uvicorn): python -m uvicorn backend.main:app --reload
 
 ### Acesse!
 Abra seu navegador e acesse: http://127.0.0.1:8000
+
 
 ----------------------------------------------------------------------------------------------------------------------
 
